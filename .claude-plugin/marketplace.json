@@ -1,0 +1,28 @@
+{
+  "name": "feature-torture",
+  "owner": {
+    "name": "Bastien Gallay"
+  },
+  "metadata": {
+    "description": "Feature-torture — single-plugin marketplace.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "feature-torture",
+      "source": "./",
+      "description": "Pressure-test one roadmap feature per session and emit a decision report.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "homepage": "https://github.com/bastien-gallay/feature-torture",
+      "repository": "https://github.com/bastien-gallay/feature-torture",
+      "category": "productivity",
+      "tags": [
+        "feature-torture",
+        "roadmap",
+        "decision-making",
+        "ADR"
+      ]
+    }
+  ]
+}

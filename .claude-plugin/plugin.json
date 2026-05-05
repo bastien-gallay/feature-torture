@@ -1,0 +1,19 @@
+{
+  "name": "feature-torture",
+  "version": "0.1.0",
+  "description": "Pressure-test one roadmap feature per session and emit a 500-900-word decision report (verdict + ADR + adjacency + spec stub) using a closed technique library and a 6-label verdict palette.",
+  "author": {
+    "name": "Bastien Gallay"
+  },
+  "homepage": "https://github.com/bastien-gallay/feature-torture",
+  "repository": "https://github.com/bastien-gallay/feature-torture",
+  "license": "MIT",
+  "keywords": [
+    "feature-torture",
+    "roadmap",
+    "decision-making",
+    "ADR",
+    "facilitation",
+    "product-management"
+  ]
+}
