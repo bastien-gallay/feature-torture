@@ -2,6 +2,12 @@
 
 A **decision-discipline skill** for Claude Code (and compatible AI coding assistants). Pressure-tests one roadmap feature per session and emits a 500–900-word report a human can act on — verdict + ADR + adjacency map + spec stub when shipping.
 
+## What this is *not*
+
+`feature-torture` is **not** a stress-test, load-test, fuzzer, or chaos-engineering tool. It does not run code, exercise APIs under load, or break a deployed system to see what breaks. It runs *before* implementation, on a roadmap entry. The "torture" in the name is the interrogation of an idea — does the slice make sense, what's the better cut, when should it ship — not the abuse of a built artefact.
+
+If you landed here looking for stress / load / chaos testing, you want one of: [Gatling](https://gatling.io/), [k6](https://k6.io/), [Locust](https://locust.io/), [Chaos Mesh](https://chaos-mesh.org/), or [Toxiproxy](https://github.com/Shopify/toxiproxy).
+
 ## Why
 
 A roadmap entry is a *headline*. A sprint plan is a *commitment*. The gap between them is where unverified assumptions hide. `feature-torture` forces the assumptions out before the sprint inherits them.
