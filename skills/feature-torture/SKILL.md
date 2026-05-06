@@ -69,6 +69,60 @@ cleanly.
 This is a brainstorm variant. **Choose** your techniques. Do not run
 all of them.
 
+## Shape check (when the input isn't a roadmap row)
+
+Run this **only** when the user invoked the skill with a specific
+target (a block name, a release task, a policy question, a coupled
+bundle of decisions). When invoked bare, skip this section and go
+straight to *Pick the feature*.
+
+The skill is scaffolded for one unstarted roadmap feature. When the
+named input doesn't fit that shape, do not improvise the bounce — emit
+this structured block, then wait for the user's pick:
+
+```text
+Detected: <release-execution | policy | decision-bundle | non-roadmap>
+Why: <one-line reason from the input>
+
+Pick:
+  (a) Reframe as feature — name an F-ID this stands in for, I'll run
+      feature-torture proper against that row.
+  (b) Torture as single decision — drop F-ID / spawned-children /
+      "make me dream" artefacts; keep diamond loop + 6-label verdict;
+      write `{{REPORTS_DIR}}/policy-<slug>.md`.
+  (c) Bail to /brainstorm — this is divergent ideation, not pressure-
+      test-to-verdict shape.
+```
+
+**Detection signals** (any one is enough to fire the check):
+
+- input names a block letter, release version, or task ID rather than
+  an F-ID;
+- input does not grep as a row in `{{ROADMAP_PATH}}`;
+- input names a policy, semver decision, release cadence, vendor pick;
+- input bundles **two or more** distinct decisions in one breath.
+
+**Hard cap on path (b).** One decision per session. If the user picks
+(b) on a *bundle*, refuse the bundle and ask them to name the single
+decision to torture first; the others wait their turn or go to
+`/brainstorm`. The whole point of FT is to converge a verdict — a
+bundle dilutes that.
+
+**Path (b) section omissions** (everything else stays required):
+
+- *Make me dream* → optional. Replace with one paragraph naming the
+  steady state once the decision is settled, or skip outright.
+- *Adjacency map* → re-targeted to **decision-adjacency**: which other
+  policies / scope decisions / release rituals does this touch.
+- *Spawned children* → omit. Policy decisions don't spawn F-entries.
+- *Filename* → `policy-<slug>.md`, not `<F-id>.md`.
+- *Start-state check* → replace with a one-line "what's the current
+  default behaviour, and where is it documented" probe.
+
+Everything else (TL;DR, ADR core, output-type, open questions,
+techniques used, length budget, post-converge cross-label challenge)
+applies unchanged.
+
 ## Repo orientation (read first, in order)
 
 1. `AGENTS.md` (or `README.md`) — project principles, audience, taxonomy.
@@ -342,10 +396,11 @@ Add **only if they earn their space**. Default: skip.
 ## Output location
 
 ```
-{{REPORTS_DIR}}/<F-id>.md
+{{REPORTS_DIR}}/<F-id>.md          # standard feature run
+{{REPORTS_DIR}}/policy-<slug>.md   # shape-check path (b) only
 ```
 
-- No date in the filename. One report per feature.
+- No date in the filename. One report per feature (or per policy decision).
 - If re-tortured: append `-v2`, `-v3`.
 - At the very bottom, declare:
 
@@ -357,7 +412,8 @@ Add **only if they earn their space**. Default: skip.
 ## Hard rules
 
 - **Pick first, research second, write third.**
-- **One feature per session.** No "while we're at it" detours.
+- **One feature per session** (or one policy decision, on shape-check
+  path (b)). No "while we're at it" detours, no bundles.
 - **No new top-level required sections.**
 - **If two equally credible sources contradict on a load-bearing
   fact, surface the contradiction in Open Questions** rather than

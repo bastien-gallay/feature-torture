@@ -115,6 +115,23 @@ Every 👍 report should be `decision+spec`. Every 👎 / ⏸ / 🤷 report
 should be `decision-only`. ✂️ and 🧬 can be either. A 👍 with
 `decision-only` is a fail (the report dodged the spec stub).
 
+### Shape-check regression cases
+
+When the user names a specific target that isn't a roadmap row, the
+skill must emit the *Detected / Why / Pick (a)/(b)/(c)* block and
+wait — not improvise a bounce, not force a feature frame.
+
+Three live regression cases (from the lucid-lint 2026-05-06 session):
+
+| Input | Expected detection | Expected pick path |
+|---|---|---|
+| `/feature-torture Block A` (a daily-file release-cut block) | `release-execution` | (c) bail to `/brainstorm` *or* (a) name the underlying F-ID; never (b) — release execution has no decision to torture. |
+| "review the v0.2.5 release scope" | `policy` (release-scope question) | (b) torture as single decision → `policy-v0-2-5-scope.md`. |
+| "v0.2.5 scope + when is a new rule a breaking change + patch cadence" | `decision-bundle` | Refuse the bundle; ask which single decision to torture first; route the rest to `/brainstorm` or later sessions. |
+
+A run that produces an ad-hoc refusal paragraph (no *Detected / Why /
+Pick* block) on any of the three inputs above is a regression.
+
 ### Cross-corpus drift
 
 When a prompt edit lands, run one new dogfood in *each* corpus before
