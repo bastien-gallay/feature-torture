@@ -23,6 +23,16 @@ Most AI feature-review sessions drift: you ask "what should we do with X?", the 
 
 Each non-default verdict triggers a **post-converge cross-label challenge**: the report has to argue why the two nearest-neighbour verdicts don't fit. Refutations live in *Choice*, making the verdict defensible at a glance.
 
+## When the input isn't a roadmap feature
+
+When you point the skill at something that isn't a feature row — a release-cut block, a policy / semver question, a coupled bundle of decisions — it doesn't improvise a refusal. It detects the shape and emits a structured pick:
+
+- **(a) Reframe as feature** — name an F-ID this stands in for, and the skill runs as normal against that row.
+- **(b) Torture as a single decision** — keeps the diamond loop and the 6-label verdict, drops the F-ID / spawned-children / "make me dream" artefacts, writes `policy-<slug>.md`. Hard cap: one decision per session — bundles are refused.
+- **(c) Bail to `/brainstorm`** — when the input is divergent ideation rather than pressure-test-to-verdict shape.
+
+Detection is automatic; there is no flag. Standard feature-row runs are unchanged.
+
 ## Install
 
 ### Claude Code (plugin channel)
