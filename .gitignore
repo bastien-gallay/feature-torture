@@ -8,3 +8,5 @@ node_modules/
 # so it exists on fresh clones. Individual artefacts are not tracked.
 dist/*.skill
 !dist/.gitkeep
+
+.claude/settings.local.json
